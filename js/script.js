@@ -9,13 +9,27 @@ const personalMovieDB = {
         privat: false
     };
 
-const lastFilmName1 = prompt('Один из недавно просмотренных фильмов?'),
-      lastFilmRaiting1 = prompt('На сколько оцените его?'),
-      lastFilmName2 = prompt('Один из недавно просмотренных фильмов?'),
-      lastFilmRaiting2 = prompt('На сколько оцените его?');
+if (personalMovieDB.count <= 10) {
+    alert("Просмотрено давольно мало фильмов");
+} else if (personalMovieDB.count > 10 && personalMovieDB.count <= 30) {
+    alert("Вы классический зритель");
+} else if (personalMovieDB.count > 30) {
+    alert("Вы киноман!");
+} else {
+    alert("Произошла ошибка");
+}
 
-personalMovieDB.movies[lastFilmName1] = lastFilmRaiting1;
-personalMovieDB.movies[lastFilmName2] = lastFilmRaiting2;
+for (let i = 0; i < 2; i++) {
+    const lastFilmName = prompt('Один из недавно просмотренных фильмов?'),
+          lastFilmRaiting = prompt('На сколько оцените его?');
 
+    if (lastFilmName != null && lastFilmRaiting != null && lastFilmName != '' && lastFilmRaiting != '' && lastFilmName.length < 50) {
+        personalMovieDB.movies[lastFilmName] = lastFilmRaiting;
+        console.log("done");
+    } else {
+        console.log("error");
+        i--;
+    }
+}
 
 console.log(personalMovieDB);

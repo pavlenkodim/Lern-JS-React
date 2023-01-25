@@ -248,3 +248,211 @@ function fib(num) {
     }
 }
 console.log(fib(7));
+
+// Объекты. Деструктизация объектов(ES6)
+
+const options = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    color: {
+        border: 'blak',
+        bg: 'red'
+    },
+    makeTest: function() {
+        console.log("test");
+    }
+};
+
+// console.log(Object.keys(options).length);
+options.makeTest();
+
+// const {border, bg} = options.color;
+// console.log(border);
+
+// delete options.name;
+// console.log(options);
+
+// Перебор объекта options и перебор его ключей
+let counter = 0;
+for (let key in options) {
+    if (typeof(options[key]) === 'object') {
+        for (let i in options[key]){
+            console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
+            counter++;
+        }
+    } else {
+        console.log(`Свойство ${key} имеет значение ${options[key]}`);
+        counter++;
+    }
+}
+console.log(counter);
+
+// Массивы и псевдомассивы
+
+const arr = [0, 1, 5, 2, 3, 6, 8, 10];
+// arr[99] = 0;
+// console.log(arr.length);
+arr.sort(compareNum);
+console.log(arr);
+
+function compareNum(a, b) {
+    return a - b;
+}
+
+arr.forEach(function(item, i, arr) {
+    console.log(`${i}: ${item} внутри массива ${arr}`);
+});
+
+// arr.pop();
+// arr.push(10);
+
+console.log(arr);
+
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+for (let value of arr) {
+    console.log(value);
+}
+
+const stri = prompt("", "");
+const products = stri.split(", ");
+products.sort();
+
+
+
+
+
+
+
+
+// Задание на объекты
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month',
+    },
+    showAgeAndLangs: function(plan) {
+        let result = '';
+        for (let key in plan) {
+            for (let i in plan[key]) {
+                if (i === 'languages') {
+                    for (let j in plan[key][i]) {
+                        result += plan[key][i][j] + ' ';
+                    }
+                }
+            }
+        }
+        console.log(`Мне ${plan.age} и я владею языками: ${result.toUpperCase().trim()}`);
+    }
+};
+
+personalPlanPeter.showAgeAndLangs(personalPlanPeter);
+
+function showExperience(plan) {
+    return plan.skills.exp;
+}
+
+function showProgrammingLangs(plan) {
+    let res = '';
+    for (let key in plan) {
+        if (typeof(plan[key]) === 'object') { 
+            for (let i in plan[key]) {
+                if (i === 'programmingLangs') {
+                    for (let j in plan[key][i]) {
+                        res += `Язык ${j} изучен на ${plan[key][i][j]} `;
+                    }
+                }
+            }
+        }
+    }
+    return res;   
+}
+
+// console.log(showExperience(personalPlanPeter));
+console.log(showProgrammingLangs(personalPlanPeter));
+
+
+
+// Задание на Массивы 1
+const family = ['Peter', 'Ann', 'Alex', 'Linda'];
+
+function showFamily(arr) {
+    if (arr.length > 0) {
+        let result = '';
+        for (let i = 0; i < arr.length; i++ ) {
+            result += arr[i] + ' ';
+        }
+        return `Семья состоит из: ${result.trim()}`;
+    } else {
+        return 'Семья пуста';
+    }
+}
+
+console.log(showFamily(family));
+
+// Задание на Массивы 2
+const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
+
+function standardizeStrings(arr) {
+    arr.forEach(element => console.log(element.toLowerCase()));
+}
+
+standardizeStrings(favoriteCities);
+
+// Задание на Массивы 3
+const someString = 'This is some strange string';
+
+function reverse(str) {
+    if (typeof(str) === 'string') {
+        let arr = str.split('');
+        arr = arr.reverse();
+        arr = arr.join('');
+        return arr;
+    } else {
+        return 'Ошибка';
+    }
+}
+console.log(reverse(someString));
+
+
+
+// Задание с Массивами 4
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+function availableCurr(arr, missingCurr) {
+    // if (arr.length > 0) {
+    //     if (arr.includes(missingCurr)) {
+    //         let del = arr.indexOf(missingCurr);
+    //         arr.splice(del, 1);        
+    //     }
+    //     return `Доступные валюты: \n${arr}`;
+    // } else {
+    //     return `Нет доступных валют`;
+    // }
+    if (arr.length > 0) {
+        let str = '';
+        for (let i = 0; i < missingCurr.length; i++) {
+            if (arr[i] === missingCurr) {
+                continue;
+            }
+            str += `${arr[i]}\n`;
+        }
+        return `Доступные валюты: \n${str}`;
+    } else {
+        return `Нет доступных валют`;
+    }
+}
+
+console.log(availableCurr(['UAH', 'RUB', 'CNY'], 'CNY'));
+
+

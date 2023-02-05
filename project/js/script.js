@@ -1,18 +1,5 @@
-/* Задания на урок:
-
-1) Удалить все рекламные блоки со страницы (правая часть сайта)
-
-2) Изменить жанр фильма, поменять "комедия" на "драма"
-
-3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
-Реализовать только при помощи JS
-
-4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
-
-5) Добавить нумерацию выведенных фильмов */
-
 'use strict';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const movieDB = {
@@ -42,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newFilm.length > 21) {
                 newFilm = `${newFilm.substring(0, 22)}...`;
             }
-
-            movieDB.movies.push(newFilm);
+            if (favorite) {
+                console.log("Добавляем любимый фильм");
+            }                
             sortArr(movieDB.movies);
-
             createMovieList(movieDB.movies, movieList);
         }
 
@@ -59,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const makeChanges = (gener, bg) => {
-        gener.textContent = "ДРАМА"; //2
-        bg.style.backgroundImage = "url('img/bg.jpg')"; //3
+        gener.textContent = "ДРАМА";
+        bg.style.backgroundImage = "url('img/bg.jpg')";
     };
 
     const sortArr = (arr) => {
@@ -69,18 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createMovieList(films, parent) {
         parent.innerHTML = "";
-        sortArr(films);
-        films.forEach((film, i) => {
+            sortArr(films);     films.forEach((film, i) => {
             parent.innerHTML += `
             <li class="promo__interactive-item">${i + 1} ${film}
                 <div class="delete"></div>
             </li>
             `;
         });
-        // parent.forEach(function(item, i) {
-        //     item.innerHTML = `${i + 1}. ${films[i]} <div class="delete"></div>`;
-        //     i++;
-        // });
 
         document.querySelectorAll('.delete').forEach((btn, i) => {
             btn.addEventListener('click', () => {
@@ -92,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-
-    
     deleteAdv(adv);
     makeChanges(promoGener, promoBg);
     createMovieList(movieDB.movies, movieList);

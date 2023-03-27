@@ -1,0 +1,23 @@
+{
+  "name": "lern-js-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavlenkodim/Lern-JS-React.git"
+  },
+  "author": "Ceres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavlenkodim/Lern-JS-React/issues"
+  },
+  "homepage": "https://github.com/pavlenkodim/Lern-JS-React#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-plugin-react": "^7.32.2"
+  }
+}
